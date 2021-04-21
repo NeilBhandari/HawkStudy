@@ -1,34 +1,36 @@
+package com.ipro1.springboot;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectDB {
-	
-	public static void main(String[] args) {
-		ConnectDB c_db1 = new ConnectDB();
+
+	public static void main (String[] args)
+	{
+		ConnectDB obj_ConnectDB = new ConnectDB();
 		
-		System.out.println(c_db1.get_connection());
+		System.out.println(obj_ConnectDB.get_connection());
+		
 	}
 	
 	public Connection get_connection() {
-		
-		Connection c = null;
-		String host = "localhost";
-		String port = "5432";
-		String db_name = "postgres";
-		String username = "postgres";
-		String password = "12345";
-	      try {
-	         Class.forName("org.postgresql.Driver");
-	         c = DriverManager
-	            .getConnection("jdbc:postgresql://"+host+":"+port+"/"+db_name,
-	            username, password);
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	         System.err.println(e.getClass().getName()+": "+e.getMessage());
-	         System.exit(0);
-	      }
-	      System.out.println("Opened database successfully!!");
-	      return c;
-	}
+		Connection connection = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentschema=public", "postgres", "753113");
+			if (connection != null)
+			{
+				System.out.println("Connection Status: Success");
+				System.out.println(connection.getSchema());
+			}
+			else
+			{
+				System.out.println("Connection Status: Failed");
 
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return connection;
+	}
 }
