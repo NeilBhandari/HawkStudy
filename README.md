@@ -1,3 +1,2 @@
 # IPRO497-DigitalDev
-
-yoooo
+This is the HawkStudy github for the AP Digital Development course at IIT.
